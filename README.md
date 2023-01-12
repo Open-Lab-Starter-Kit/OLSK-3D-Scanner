@@ -6,6 +6,11 @@
 
 <br>
 
+Introduction
+--
+
+The OLSK 3D Scanner is an open source 3D scanner with turntable and 3 cameras for a faster caption of the 3D model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. The user can process and save the model online, removing the need of transfering the file by USB stick or connecting via cable. The position of the cameras can be adjusted according to the size and shape of the object to be scanned. 
+
 Specifications V1
 --
 
@@ -14,13 +19,19 @@ Specifications V1
 - motion: GT2 10mm belt
 - motors: stepper motor NEMA 17
 
+Files
+--
+
+- **[CAD](cad)**
+
 Author
 --
+
+OLSK 3D Scanner has been designed and built by **[InMachines Ingrassia GmbH](https://www.inmachines.net/)**.
+
 <img src="https://irp.cdn-website.com/2b5ccdcd/dms3rep/multi/InMachines_Logo_positive_white.png" width="50%">
 
 <br>
-
-OLSK 3D Scanner has been designed and built by **[InMachines Ingrassia GmbH](https://www.inmachines.net/)**.
 
 Machine design:
 - **[Wilhelm Schütze](http://fabacademy.org/archives/2015/sa/students/schutze.wilhelm/index.html)**
