@@ -11,6 +11,8 @@ Introduction
 
 The OLSK 3D Scanner is an open source 3D scanner with turntable and 3 cameras for a faster caption of the 3D model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. The user can process and save the model online, removing the need of transfering the file by USB stick or connecting via cable. The position of the cameras can be adjusted according to the size and shape of the object to be scanned. 
 
+<img src="media/Highlights.jpg" width="100%">
+
 Specifications V1
 --
 
