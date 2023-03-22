@@ -11,8 +11,8 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "InMachines_24_EXT";
-const char* password = "1nMach1n3s#1ngrass1a_G8mbH";
+const char* ssid = "WIFI NAME";
+const char* password = "1234";
 String hostname= "cam1";
 //String hostname= "cam2";
 //String hostname= "cam3";
