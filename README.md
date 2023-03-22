@@ -13,7 +13,7 @@ The OLSK 3D Scanner is an open source 3D scanner with turntable and 3 cameras fo
 
 <img src="media/Highlights.jpg" width="100%">
 
-Result
+Results
 --
 ![3_aligned cameras](https://user-images.githubusercontent.com/27281789/226887228-d8fd9758-c1af-40a1-86c2-402699e5604e.jpg)
 ![texturized mesh](https://user-images.githubusercontent.com/27281789/226887335-66988d3e-bca8-46be-b45b-78f913f57efa.jpg)
