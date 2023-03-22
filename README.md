@@ -25,7 +25,7 @@ Files
 --
 
 - **[CAD](cad)**
-- **[Program](Program)**
+- **[Program](https://github.com/Open-Lab-Starter-Kit/OLSK-3D-Scanner/tree/main/program)**
 
 Author
 --
