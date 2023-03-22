@@ -61,6 +61,9 @@ Machine design:
 - **[Wilhelm Schütze](http://fabacademy.org/archives/2015/sa/students/schutze.wilhelm/index.html)**
 - **[Alberto Porri](http://fabacademy.org/2021/labs/santachiara/students/alberto-porri/)**
 
+Software design:
+- **[Marcello Tania](https://marcellotania.com/))**
+
 The machine is part of the **[Open Lab Starter Kit (OLSK)](https://www.inmachines.net/open-lab-starter-kit)** group of open source digital fabrication machines.
 
 OLSK is developed by **[InMachines Ingrassia GmbH](https://www.inmachines.net/)** for the **[Dtec project](https://dtecbw.de/home/forschung/hsu/projekt-fabcity)** at **[Fab City Hamburg](https://www.fabcity.hamburg/en/)**.
