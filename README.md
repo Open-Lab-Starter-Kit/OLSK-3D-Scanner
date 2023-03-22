@@ -21,6 +21,21 @@ Specifications V1
 - motion: GT2 10mm belt
 - motors: stepper motor NEMA 17
 
+Software
+--
+- Triceptor: Recieve images from the three cameras and controlling the table of the 3d scanner.
+![triceptor](https://user-images.githubusercontent.com/27281789/226885639-d5301913-e7d2-4163-a722-cb4a653221d4.jpg)
+- esp32Cam: Stream camera via wifi.
+- esp32MainBoard: Controller to move the OLSK-3D-Scanner.
+
+## Setup
+Change wifi name and password in esp32Cam:
+
+```
+const char* ssid = "WIFI NAME";
+const char* password = "1234";
+```
+
 Files
 --
 
