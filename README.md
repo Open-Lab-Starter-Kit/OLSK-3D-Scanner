@@ -27,6 +27,15 @@ Specifications V1
 - motion: GT2 10mm belt
 - motors: stepper motor NEMA 17
 
+Warning
+--
+
+Although we were able to obtain some successful 3d scans, at the end the cameras broke due to overheating. 
+
+For the scanner in order to obtain the pictures for the photogrammetry process, we use 3 “ESP32- CAM AI-Thinker” modules, this module comes with stock OV2640 cameras that lacks both the resolution and autofocus capabilities needed in order for the process to work, That is why we replaced this stock cameras with the OV5640 model upgrading from 2MP to 5MP and adding the already mentioned autofocus feature. Unfortunately, even with custom made heatsinks, after some successful scans, the cameras overheated and broke. 
+
+The results made clear that better heat dissipation is needed (maybe active cooling) or we should find a more efficient camera module replacement that is equal or more capable.
+
 Software
 --
 - Triceptor: Recieve images from the three cameras and controlling the table of the 3d scanner.
