@@ -13,6 +13,12 @@ The OLSK 3D Scanner is an open source 3D scanner with turntable and 3 cameras fo
 
 <img src="media/Highlights.jpg" width="100%">
 
+Results
+--
+![3_aligned cameras](https://user-images.githubusercontent.com/27281789/226887228-d8fd9758-c1af-40a1-86c2-402699e5604e.jpg)
+![texturized mesh](https://user-images.githubusercontent.com/27281789/226887335-66988d3e-bca8-46be-b45b-78f913f57efa.jpg)
+![toy and 3d model](https://user-images.githubusercontent.com/27281789/226887357-8d807be2-d9e9-4115-ba68-374b7bcd95cd.jpg)
+
 Specifications V1
 --
 
@@ -21,10 +27,35 @@ Specifications V1
 - motion: GT2 10mm belt
 - motors: stepper motor NEMA 17
 
+Warning
+--
+
+Although we were able to obtain some successful 3d scans, at the end the cameras broke due to overheating. 
+
+For the scanner in order to obtain the pictures for the photogrammetry process, we use 3 “ESP32- CAM AI-Thinker” modules, this module comes with stock OV2640 cameras that lacks both the resolution and autofocus capabilities needed in order for the process to work, That is why we replaced this stock cameras with the OV5640 model upgrading from 2MP to 5MP and adding the already mentioned autofocus feature. Unfortunately, even with custom made heatsinks, after some successful scans, the cameras overheated and broke. 
+
+The results made clear that better heat dissipation is needed (maybe active cooling) or we should find a more efficient camera module replacement that is equal or more capable.
+
+Software
+--
+- Triceptor: Recieve images from the three cameras and controlling the table of the 3d scanner.
+![triceptor](https://user-images.githubusercontent.com/27281789/226885639-d5301913-e7d2-4163-a722-cb4a653221d4.jpg)
+- esp32Cam: Stream camera via wifi.
+- esp32MainBoard: Controller to move the OLSK-3D-Scanner.
+
+## Setup
+Change wifi name and password in esp32Cam:
+
+```
+const char* ssid = "WIFI NAME";
+const char* password = "1234";
+```
+
 Files
 --
 
 - **[CAD](cad)**
+- **[Program](https://github.com/Open-Lab-Starter-Kit/OLSK-3D-Scanner/tree/main/program)**
 
 Author
 --
@@ -38,6 +69,9 @@ OLSK 3D Scanner has been designed and built by **[InMachines Ingrassia GmbH](htt
 Machine design:
 - **[Wilhelm Schütze](http://fabacademy.org/archives/2015/sa/students/schutze.wilhelm/index.html)**
 - **[Alberto Porri](http://fabacademy.org/2021/labs/santachiara/students/alberto-porri/)**
+
+Software design:
+- **[Marcello Tania](https://marcellotania.com/)**
 
 The machine is part of the **[Open Lab Starter Kit (OLSK)](https://www.inmachines.net/open-lab-starter-kit)** group of open source digital fabrication machines.
 
