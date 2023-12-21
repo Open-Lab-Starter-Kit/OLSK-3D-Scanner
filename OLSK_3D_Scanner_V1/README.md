@@ -56,6 +56,9 @@ Files
 
 - **[CAD](cad)**
 - **[Program](https://github.com/Open-Lab-Starter-Kit/OLSK-3D-Scanner/tree/main/program)**
+- **[BOM](BOM)**
+- **[PCB](PCB)**
+- **[Wiring Schematic](3D_Scanner_V1_WiringSchematic.pdf)**
 
 Author
 --
