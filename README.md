@@ -33,6 +33,7 @@ Files
 - **[CAD](cad)**
 - **[Software](Software)**
 - **[BOM](BOM)**
+- **[PCB](PCB)**
 
 Author
 --
