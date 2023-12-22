@@ -34,6 +34,7 @@ Files
 - **[Software](Software)**
 - **[BOM](BOM)**
 - **[PCB](PCB)**
+- **[Wiring Schematic](3D_Scanner_V2_WiringSchematic.pdf)**
 
 Author
 --
