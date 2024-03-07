@@ -35,7 +35,7 @@ Files
 - **[BOM](BOM)**
 - **[PCB](PCB)**
 - **[Wiring Schematic](3D_Scanner_V2_WiringSchematic.pdf)**
-- **[Workbook](OLSK_3D_Scanner_V2_Workbook.pdf)**
+- **[Assembly Workbook](OLSK_3D_Scanner_V2_Workbook.pdf)**
 
 Author
 --
