@@ -30,4 +30,9 @@ export const Constants = {
     SNAPSHOT: 'SNAPSHOT',
     DISCONNECT: 'DISCONNECTED',
   },
+  IMAGES_FORMATE: [
+    { label: 'PNG', value: 'png' },
+    { label: 'JPG', value: 'jpg' },
+    { label: 'JPEG', value: 'jpeg' },
+  ],
 };

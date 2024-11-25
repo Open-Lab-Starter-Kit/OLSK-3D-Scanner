@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia';
+import { Constants } from 'src/constants';
 
 export const usePicturesManagerStore = defineStore('pictures', {
   state: () => ({
     snapShotsDirectory: null as string | null,
     streamElement: null as HTMLVideoElement | null,
+    imageFormat: Constants.IMAGES_FORMATE[0].value as string,
   }),
 
   actions: {
@@ -21,7 +23,10 @@ export const usePicturesManagerStore = defineStore('pictures', {
 
         const context = canvas.getContext('2d');
         context?.drawImage(this.streamElement, 0, 0, width, height);
-        const imageURL = canvas.toDataURL('image/png');
+        const mimeType =
+          this.imageFormat === 'png' ? 'image/png' : 'image/jpeg';
+
+        const imageURL = canvas.toDataURL(mimeType, 1);
 
         // save picture
         await this.saveSnapShotInDirectory(imageURL);
@@ -31,6 +36,7 @@ export const usePicturesManagerStore = defineStore('pictures', {
       if (this.snapShotsDirectory) {
         await window.electronAPI.saveSnapShot(
           imageURL,
+          this.imageFormat,
           this.snapShotsDirectory
         );
       }

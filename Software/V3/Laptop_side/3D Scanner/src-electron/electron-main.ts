@@ -97,8 +97,11 @@ ipcMain.handle('dialog:openFolder', async () => {
 });
 
 // Handle save image in specific folder
-ipcMain.handle('save-snapshot', (event, imageURL, folderPath) => {
-  const base64Data = imageURL.replace(/^data:image\/png;base64,/, '');
+ipcMain.handle('save-snapshot', (event, imageURL, imageFormat, folderPath) => {
+  const base64Prefix = `^data:image/${
+    imageFormat === 'png' ? 'png' : 'jpeg'
+  };base64,`;
+  const base64Data = imageURL.replace(new RegExp(base64Prefix), '');
 
   // Ensure the folder exists
   if (!fs.existsSync(folderPath)) {
@@ -106,7 +109,7 @@ ipcMain.handle('save-snapshot', (event, imageURL, folderPath) => {
   }
 
   // Create a unique file name for the image
-  const fileName = `snapshot_${Date.now()}.png`;
+  const fileName = `snapshot_${Date.now()}.${imageFormat}`;
   const filePath = path.join(folderPath, fileName);
 
   // Save the image to the specified folder

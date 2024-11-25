@@ -2,18 +2,18 @@
 
 A Quasar Project
 
-## Install the dependencies and libraries
+## Install the dependencies
 ```bash
 yarn
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-yarn dev -m electron
+yarn dev
 ```
 
 ### Build the app for production
 ```bash
-yarn build -m electron
+yarn build
 ```
 

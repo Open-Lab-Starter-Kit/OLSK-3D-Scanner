@@ -34,7 +34,11 @@ declare global {
     electronAPI: {
       isSerialConnected: () => Promise<boolean>;
       connectSerial: () => Promise<void>;
-      saveSnapShot: (imageURL: string, filePath: string) => Promise<void>;
+      saveSnapShot: (
+        imageURL: string,
+        imageFormat: string,
+        folderPath: string
+      ) => Promise<void>;
       openFolderPicker: () => Promise<string>;
       sendDataToSerial: (data: string) => void;
       receiveDataFromSerial: () => Promise<string | null>;
@@ -46,8 +50,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   isSerialConnected: async () =>
     await ipcRenderer.invoke('is-serial-connected'),
   connectSerial: async () => await ipcRenderer.invoke('connect-serial'),
-  saveSnapShot: (imageURL: string, filePath: string) =>
-    ipcRenderer.invoke('save-snapshot', imageURL, filePath),
+  saveSnapShot: (imageURL: string, imageFormat: string, filePath: string) =>
+    ipcRenderer.invoke('save-snapshot', imageURL, imageFormat, filePath),
   openFolderPicker: () => ipcRenderer.invoke('dialog:openFolder'),
   sendDataToSerial: (data: string) => ipcRenderer.invoke('write-serial', data),
   receiveDataFromSerial: () => ipcRenderer.invoke('read-serial'),
