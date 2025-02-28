@@ -6,8 +6,7 @@ export const Constants = {
   GRBL_COMMAND_STATUS: '?' as string,
   NEWLINE: '\n' as string,
   SCANNER_COMMANDS: {
-    SIDES_LED_COLOR_COMMAND: 'SIDES_RGB',
-    RING_LED_COLOR_COMMAND: 'RING_RGB',
+    LED_COLOR_COMMAND: 'RGB',
     START_SCANNING_COMMAND: 'START',
     PAUSE_SCANNING_COMMAND: 'PAUSE',
     RESUME_SCANNING_COMMAND: 'RESUME',
@@ -35,10 +34,5 @@ export const Constants = {
     { label: 'PNG', value: 'png' },
     { label: 'JPG', value: 'jpg' },
     { label: 'JPEG', value: 'jpeg' },
-  ],
-  LED_OPTIONS: [
-    { label: 'Sides', value: 'SIDSE' },
-    { label: 'Ring', value: 'RING' },
-    { label: 'Both', value: 'BOTH' },
   ],
 };

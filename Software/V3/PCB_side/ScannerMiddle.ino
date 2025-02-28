@@ -1,8 +1,7 @@
 /////////////////////////////////INCLUDES////////////////////////////////////////////
 
 #include <Adafruit_NeoPixel.h>
-#define SIDES_LED_COUNT 80
-#define RING_LED_COUNT 24
+#define LED_COUNT 60
 #include <EEPROM.h>
 
 //CONSTANTS
@@ -19,8 +18,7 @@
 #define START_DELAY_TIME 1000
 
 //IOs
-#define RING_RGB_PIN 3
-#define SIDES_RGB_PIN 4
+#define RGB_PIN 6
 
 
 //SERIAL CONSTANTS
@@ -68,8 +66,7 @@ const char OUTGOING_COMMANDS[OUTGOING_COMMAND_AMOUNT][20] = {
 //PICO available commands
 #define STOPS_ROTATION "STOPS_ROTATION"  //defines how many stops are executed for taking pictures during each single rotation, dividing in equal parts the circle, example PR=4 will make the stops at 90, 180, 270 and 360 degrees
 #define ROTATION_SPEED "SPEED"  //defines the speed of rotation, expressed in % rather than mm/min or radiants/seconds, example RS=50
-#define SIDES_RGB_SETTINGS "SIDES_RGB"   //defines the side led RGB [on-off, colours are 0-255 (R,G,B), intensity is 0-100]. example RBG=0,200,200,200,80
-#define RING_RGB_SETTINGS "RING_RGB"   //defines the ring led RGB [on-off,colours are 0-255 (R,G,B), intensity is 0-100]. example RBG=1,200,200,200,80
+#define RGB_SETTINGS "RGB"   //defines the RGB colours and power, power is 0-100, colours are 0-255, example RBG=200,200,200,80
 #define HOMING "HOMING"      //executes the homing cycle for the arc; does not use any parameter
 #define PICTURES_ARC "PICTURES_ARC"    //defines how many pictures are going to be taken at each single stop of the plate, dividing the arc in equal portions
 #define START "START"        //starts the motion for collecting the pictures of a single cycle of plate and arc motion
@@ -80,22 +77,22 @@ const char OUTGOING_COMMANDS[OUTGOING_COMMAND_AMOUNT][20] = {
 #define RESUME_PICTURE "RESUME_PICTURE"        //resumes the current scanning cycle if active
 
 
-#define PICO_COMMAND_AMOUNT 12
+#define PICO_COMMAND_AMOUNT 11
 
 const char PICO_COMMANDS[PICO_COMMAND_AMOUNT][20] = {
 
   STOPS_ROTATION,  //case 0 STOPS_ROTATION
   ROTATION_SPEED,  //case 1 ROTATION_SPEED
-  SIDES_RGB_SETTINGS,    //case 2 SIDES_RGB_SETTINGS
-  RING_RGB_SETTINGS,    //case 3 RING_RGB_SETTINGS
-  HOMING,          //case 4 HOMING
-  PICTURES_ARC,    //case 5 PICTURES_ARC
-  START,           //case 6 START
-  STOP,            //case 7 STOP
-  PAUSE,           //case 8 PAUSE
-  RESUME,           //case 9 RESUME
-  PRINT_INFO,   //case 10 print settings
-  RESUME_PICTURE, //case 11 resume picture
+  RGB_SETTINGS,    //case 2 RGB_SETTINGS
+  HOMING,          //case 3 HOMING
+  PICTURES_ARC,    //case 4 PICTURES_ARC
+  START,           //case 5 START
+  STOP,            //case 6 STOP
+  PAUSE,           //case 7 PAUSE
+  RESUME,           //case 8 RESUME
+  PRINT_INFO,   //case 9 print settings
+  RESUME_PICTURE, //case 10 resume picture
+
 };
 
 
@@ -179,12 +176,10 @@ int TEENSYLinePos = 0;
 int waitForOk = 0;
 
 //LEDs
-Adafruit_NeoPixel sides = Adafruit_NeoPixel(SIDES_LED_COUNT, SIDES_RGB_PIN, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel ring = Adafruit_NeoPixel(RING_LED_COUNT, RING_RGB_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, RGB_PIN, NEO_GRB + NEO_KHZ800);
 
 
 //RGB settings values
-int isLedOn = 1;
 int colorR = 100;
 int colorG = 100;
 int colorB = 100;
@@ -209,31 +204,26 @@ bool forceStatus = false;
 int outGoingCommand = -1;
 
 void setup() {
+
+
+  //INIT PINS FIRST
+  //pinMode(RGB_PIN, OUTPUT);
+
   //init LEDS
-  // sides
-  sides.begin();
-  sides.show();   // make sure it is visible
-  sides.clear(); 
-  sides.setBrightness(ledPower);
-  sides.show();
-  
-  for( int i = 0; i < SIDES_LED_COUNT; i++ ) {
-    sides.setPixelColor(i, colorR, colorG, colorB);
+  strip.begin();
+  strip.show();   // make sure it is visible
+  strip.clear(); 
+  strip.setBrightness(ledPower);
+  strip.show();
+
+  for( int i = 0; i < LED_COUNT; i++ )
+    strip.setPixelColor(i, colorR, colorG, colorB);
+
+  strip.show();
+
+    if (DEBUGGING_BASE) {
+    USBSerialPrintln("Initializing serial ports");
   }
-  sides.show();
-
-  // ring
-  ring.begin();
-  ring.show();   // make sure it is visible
-  ring.clear(); 
-  ring.setBrightness(ledPower);
-  ring.show();
-
-  for( int i = 0; i < RING_LED_COUNT; i++ ) {
-    ring.setPixelColor(i, colorR, colorG, colorB);
-  }
-  ring.show();
-
 
   //Serial.setFIFOSize(SERIAL_BUFFER_SIZE); not available for USBSerial looks like!!
   Serial.begin(USB_SERIAL_BAUD_RATE);
@@ -261,7 +251,7 @@ void setup() {
 
 void loop() {
 
-   sendPing(100); //uncomment sendping here
+  sendPing(100); //uncomment sendping here
 
   if(trackingPosition)
     askGRBLStatus(200);
@@ -382,7 +372,7 @@ void loop() {
 
           //wait the machine is in idle
           //if(isIdle && isPaused == false){
-          if(isIdle && !isPaused){  
+          if(isIdle){  
             //set pause
             isPaused = true;
             // USBSerialPrintln(PAUSE_OF_JOB);
@@ -796,63 +786,58 @@ void handleUSBLine() {
 
     switch (commandIndex) {
 
-      case 0:  //STOPS_ROTATION
+      case 0:  //STOPS_ROTATION,  //case 0 STOPS_ROTATION
         handleStopsRotation(); 
         if (DEBUGGING_DEEP) { USBSerialPrintln("STOPS_ROTATION"); }
         break;
 
-      case 1:  //ROTATION_SPEED
+      case 1:  //ROTATION_SPEED,  //case 1 ROTATION_SPEED
         handleSetRotationSpeed();
         if (DEBUGGING_DEEP) { USBSerialPrintln("ROTATION_SPEED"); }
         break;
 
-      case 2:  //SIDES_RGB_SETTINGS
-        handleSidesRGBSettings();
-        if (DEBUGGING_DEEP) { USBSerialPrintln("SIDES_RGB_SETTINGS"); }
+      case 2:  //RGB_SETTINGS,    //case 2 RGB_SETTINGS
+        handleRGBSettings();
+        if (DEBUGGING_DEEP) { USBSerialPrintln("RGB_SETTINGS"); }
         break;
 
-      case 3:  //RING_RGB_SETTINGS
-        handleRingRGBSettings();
-        if (DEBUGGING_DEEP) { USBSerialPrintln("RING_RGB_SETTINGS"); }
-        break;
-
-      case 4:  //HOMING
+      case 3:  //HOMING,          //case 3 HOMING
         handleHoming();
         if (DEBUGGING_DEEP) { USBSerialPrintln("HOMING"); }
         break;
 
-      case 5:  //PICTURES_ARC
+      case 4:  //PICTURES_ARC,    //case 4 PICTURES_ARC
         handleStopsPerArc();
         if (DEBUGGING_DEEP) { USBSerialPrintln("PICTURES_ARC"); }
         break;
 
-      case 6:   //START
+      case 5:   //START,           //case 5 START
         handleStart();
         if (DEBUGGING_DEEP) { USBSerialPrintln("START"); }
         break;
 
-      case 7:  //STOP
+      case 6:  //STOP,            //case 6 STOP
         handleStop();
         if (DEBUGGING_DEEP) { USBSerialPrintln("STOP"); }
         break;
       
-      case 8:  //PAUSE
+      case 7:  //PAUSE,           //case 7 PAUSE
       handlePause();
         if (DEBUGGING_DEEP) { USBSerialPrintln("PAUSE"); }
         break;
 
 
-      case 9:  //RESUME
+      case 8:  //RESUME,           //case 8 RESUME
       handleResume();
         if (DEBUGGING_DEEP) { USBSerialPrintln("RESUME"); }
         break;
 
-      case 10:  //PRINT_SETTING
+      case 9:  //PRINT_SETTING,           //case 8 PRINT_SETTING
       printSettings();
         if (DEBUGGING_DEEP) { USBSerialPrintln("PRINT_SETTING"); }
         break;
 
-      case 11:  //RESUME PICTURE
+      case 10:  //RESUME PICTURE,           //case 8 RESUME PICTURE,
       handleResumePicture();
         if (DEBUGGING_DEEP) { USBSerialPrintln("RESUME_PICTURE,"); }
         break;
@@ -997,8 +982,8 @@ void handleStart(){
   writeMACROLine(START_OF_JOB);
 
   //here perform homing
-  writeMACROLine("$HY"); //uncomment homing here
-  writeMACROLine("G92 X0");
+  writeMACROLine("$H"); //uncomment homing here
+  writeMACROLine("G92 Y0");
 
   //above is same as the old start-------------
   for(int I=0;I<stopsPerArc;I++){
@@ -1272,9 +1257,10 @@ void handleSetRotationSpeed(){
   }else
   if (DEBUGGING_DEEP) { USBSerialPrintln("Error in reading the speed"); }
 
+
 }
 
-void handleSidesRGBSettings(){
+void handleRGBSettings(){
 
     char* subString = NULL;
     char *setting;
@@ -1287,10 +1273,6 @@ void handleSidesRGBSettings(){
       ++subString;
 
       setting = strtok_r(subString,",",&saveptr);
-      if(setting != NULL)
-        isLedOn = atoi(setting);
-
-      setting = strtok_r(NULL,",",&saveptr);
       if(setting != NULL)
         colorR = atoi(setting);
 
@@ -1305,79 +1287,22 @@ void handleSidesRGBSettings(){
       setting = strtok_r(NULL,",",&saveptr);
       if(setting != NULL)
         ledPower = atoi(setting);
+
+      for (int i = 0; i < LED_COUNT; i++)
+        strip.setPixelColor(i, colorR, colorG, colorB);
+
+        strip.setBrightness(ledPower);
+        strip.show();
       
-      if(isLedOn) {
-        sides.setBrightness(ledPower);
-        sides.show();
-        for (int i = 0; i < SIDES_LED_COUNT; i++) sides.setPixelColor(i, colorR, colorG, colorB);
-        sides.show();
+      strip.setBrightness(ledPower);
 
-        if (DEBUGGING_DEEP) { USBSerialPrintln(isLedOn); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorR); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorG); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorB); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(ledPower); }
-      }
-      else {
-        if (DEBUGGING_DEEP) { USBSerialPrintln("Sides led off"); }
-        sides.setBrightness(0);
-        sides.show();
-      }
-    }
-      else if (DEBUGGING_DEEP) { USBSerialPrintln("Error in parsing RGB settings command"); 
-    }
+      if (DEBUGGING_DEEP) { USBSerialPrintln(colorR); }
+      if (DEBUGGING_DEEP) { USBSerialPrintln(colorG); }
+      if (DEBUGGING_DEEP) { USBSerialPrintln(colorB); }
+      if (DEBUGGING_DEEP) { USBSerialPrintln(ledPower); }
 
-}
-void handleRingRGBSettings(){
-
-    char* subString = NULL;
-    char *setting;
-    char *saveptr;
-
-    subString = strchr(USBLineArray, EQUAL_CHAR);
-
-    if(subString!=NULL){
-
-      ++subString;
-
-      setting = strtok_r(subString,",",&saveptr);
-      if(setting != NULL)
-        isLedOn = atoi(setting);
-
-      setting = strtok_r(NULL,",",&saveptr);
-      if(setting != NULL)
-        colorR = atoi(setting);
-
-      setting = strtok_r(NULL,",",&saveptr);
-      if(setting != NULL)
-        colorG = atoi(setting);
-
-      setting = strtok_r(NULL,",",&saveptr);
-      if(setting != NULL)
-        colorB = atoi(setting);
-
-      setting = strtok_r(NULL,",",&saveptr);
-      if(setting != NULL)
-        ledPower = atoi(setting);
-
-      if(isLedOn) {
-        ring.setBrightness(ledPower);
-        ring.show();
-        for (int i = 0; i < RING_LED_COUNT; i++) ring.setPixelColor(i, colorR, colorG, colorB);
-        ring.show();
-
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorR); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorG); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(colorB); }
-        if (DEBUGGING_DEEP) { USBSerialPrintln(ledPower); }
-      }  else {
-        if (DEBUGGING_DEEP) { USBSerialPrintln("Ring led off"); }
-        ring.setBrightness(0);
-        ring.show();
-      }
-    } 
-      else if (DEBUGGING_DEEP) { USBSerialPrintln("Error in parsing RGB settings command"); 
-    }
+    }else
+      if (DEBUGGING_DEEP) { USBSerialPrintln("Error in parsing RGB settings command"); }
 
 }
 
