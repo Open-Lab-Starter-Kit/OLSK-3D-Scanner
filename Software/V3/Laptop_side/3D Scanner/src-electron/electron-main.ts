@@ -18,7 +18,7 @@ function createWindow() {
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
     width: 1000,
     height: 600,
-    fullscreen: true,
+    fullscreen: false,
     useContentSize: true,
     webPreferences: {
       nodeIntegrationInWorker: true,
