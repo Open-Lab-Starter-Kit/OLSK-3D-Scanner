@@ -1,10 +1,10 @@
 <template>
-  <div class="column full-width q-gutter-y-sm">
+  <div class="column full-width">
     <span class="text-size bg-grey-4">Rotation Settings</span>
-    <div class="column q-pt-md q-gutter-y-md">
+    <div class="column">
       <div class="row items-center">
         <span class="subtext-size">Angle:</span>
-        <span style="font-size: large">{{ rotationAngle }}°</span>
+        <span style="font-size: medium">{{ rotationAngle }}°</span>
       </div>
       <div class="row items-center">
         <span class="subtext-size">Segments:</span>
@@ -32,7 +32,6 @@
           label
           :label-value="scannerSettings.rotationSettings.speed + ' mm/s'"
           label-always
-          switch-label-side
           :disable="scannerStatus !== Constants.SCANNER_STATUS.READY"
         />
       </div>
@@ -61,7 +60,7 @@ const rotationAngle = computed(() =>
   margin: 0;
 }
 .subtext-size {
-  font-size: large;
+  font-size: medium;
   font-weight: bold;
   padding-right: 10px;
 }

@@ -25,6 +25,6 @@ const { imageFormat } = storeToRefs(picturesManagerStore);
   padding: 10px;
 }
 .options {
-  font-size: large;
+  font-size: medium;
 }
 </style>
