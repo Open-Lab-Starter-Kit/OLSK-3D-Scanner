@@ -1,7 +1,7 @@
 
-<div align="center"><h1 style=align="center">OLSK 3D Scanner V2</h1></div>
+<div align="center"><h1 style=align="center">OLSK 3D Scanner V3</h1></div>
 
-<div align="center"><img src="media/OLSK_3DScanner_v2_1_low.png" width="100%"></div>
+<div align="center"><img src="media/OLSK_3DScanner_v3_1.png" width="100%"></div>
 <div align="center"><i>Open Source 3D Scanner - Open Lab Starter Kit</i></div>
 
 <br>
@@ -9,35 +9,28 @@
 Introduction
 --
 
-The OLSK 3D Scanner is an open source 3D scanner with turntable and 3 cameras for a faster caption of the 3D model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. Using a USB cable, the user can connect to the 3D Scanner and process the model using a custom software. The position of the cameras can be adjusted according to the size and shape of the object to be scanned. 
+The OLSK 3D Scanner is an open source 3D scanner with turntable and one moving camera. It features a closed environment for a better caption of the model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. 
 
-<img src="media/OLSK_3DScanner_v2_details_collage_low.jpg" width="100%">
+<img src="media/OLSK_Vinyl_Cutter_V3_Details.jpg" width="100%">
 
-Specifications V2
+
+The Assembly Manual
 --
 
-- cameras: 3 x USB modules with a Sony IMX179 sensor, with autofocus
-- frame: 3mm CNC milled aluminum
-- motion: GT2 10mm belt
-- motors: stepper motor NEMA 17
+All OLSK machines are open source and have an assembly manual, the BOM and necessary files available in this repository for replication. The assembly manual is an interactive 3D guide though each step and contains a list of parts, tools and instruction remarks, which follows a logic order to provide a smooth assembly.
 
-<img src="media/OLSK_3D_Scanner_V2_render.gif" width="100%">
+- **[Assembly Manual](https://open-lab-starter-kit.github.io/OLSK-3D-Scanner/)**
 
-Software
---
-- Laptop side: Receives images from the three cameras and controls the table of the 3d scanner.
-- PCB side: Controller to move the OLSK-3D-Scanner.
-<img src="media/triceptors.png" width="100%">
+<br>
+
 
 Files
 --
 
 - **[CAD](cad)**
 - **[Software](Software)**
-- **[BOM](BOM)**
 - **[PCB](PCB)**
-- **[Wiring Schematic](3D_Scanner_V2_WiringSchematic.pdf)**
-- **[Assembly Workbook](OLSK_3D_Scanner_V2_Workbook.pdf)**
+- **[Wiring Schematic](OLSK_3D_Scanner_V3_WiringSchematic.pdf)**
 
 Author
 --
