@@ -1,5 +1,5 @@
 <template>
-  <div class="row full-screen">
+  <div class="row">
     <div
       class="column shadow-5 q-px-md items-center justify-evenly bg-grey-4 col-md col-sm-12 col-xs-12"
     >
@@ -9,7 +9,7 @@
       <scan-controls />
     </div>
     <div
-      class="column col q-px-md items-center justify-evenly col-md col-sm-12 col-xs-12"
+      class="column q-px-md items-center justify-evenly col-md col-sm-12 col-xs-12"
     >
       <pictures-path-input />
       <images-format />

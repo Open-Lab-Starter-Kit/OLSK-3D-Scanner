@@ -6,15 +6,16 @@ import {
   ScannerSettings,
 } from 'src/interfaces/scanner-manager.interface';
 import { usePicturesManagerStore } from './pictures-manager.store';
+import { getColorValues } from 'src/services/scanner-settings.service';
 
 export const useScannerManagerStore = defineStore('scanner', {
   state: () => ({
     scannerStatus: Constants.SCANNER_STATUS.DISCONNECT,
     scannerSettings: {
       ledMetrics: {
-        red: 255 as number,
-        blue: 255 as number,
-        green: 255 as number,
+        red: 100 as number,
+        blue: 100 as number,
+        green: 100 as number,
         intensity: 1 as number,
       } as LEDMetrics,
       rotationSettings: {
@@ -47,9 +48,20 @@ export const useScannerManagerStore = defineStore('scanner', {
         Constants.SCANNER_COMMANDS.STOP_SCANNING_COMMAND
       );
     },
-    setupLEDColor() {
+    setupSideLEDColor(color: string, isLedOn: boolean) {
+      const { red, green, blue, intensity } = getColorValues(color);
       window.electronAPI.sendDataToSerial(
-        `${Constants.SCANNER_COMMANDS.LED_COLOR_COMMAND}=${this.scannerSettings.ledMetrics.red}, ${this.scannerSettings.ledMetrics.green}, ${this.scannerSettings.ledMetrics.blue}, ${this.scannerSettings.ledMetrics.intensity}`
+        `${Constants.SCANNER_COMMANDS.SIDES_LED_COLOR_COMMAND}=${
+          isLedOn ? 1 : 0
+        }, ${red}, ${green}, ${blue}, ${intensity}`
+      );
+    },
+    setupRingLEDColor(color: string, isLedOn: boolean) {
+      const { red, green, blue, intensity } = getColorValues(color);
+      window.electronAPI.sendDataToSerial(
+        `${Constants.SCANNER_COMMANDS.RING_LED_COLOR_COMMAND}=${
+          isLedOn ? 1 : 0
+        }, ${red}, ${green}, ${blue}, ${intensity}`
       );
     },
     setupScannerSettings() {
@@ -75,7 +87,7 @@ export const useScannerManagerStore = defineStore('scanner', {
         );
         setTimeout(
           () => (this.scannerStatus = Constants.SCANNER_STATUS.RUN),
-          100
+          200
         );
       });
     },
