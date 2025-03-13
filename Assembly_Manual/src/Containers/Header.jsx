@@ -70,7 +70,7 @@ export default function Header() {
             <div>
                 <img src="./InMachines_Logo_positive_RGB.svg" className="navLogo" id="mainLogo" />
             </div>
-            <div><h1 className="Title" >OLSK Small Laser / Fabulaser Mini V3</h1></div>
+            <div><h1 className="Title" >OLSK 3D Scanner V3</h1></div>
 
             <div className="navMenu" >
                 <ul >

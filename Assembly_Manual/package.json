@@ -1,9 +1,9 @@
 {
-  "name": "threejs-journey-exercise",
+  "name": "OLSK_3D_Scanner_V3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://open-lab-starter-kit.github.io/Online-Documentation/",
+  "homepage": "https://open-lab-starter-kit.github.io/OLSK-3D-Scanner/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

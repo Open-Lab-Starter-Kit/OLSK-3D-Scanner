@@ -4,6 +4,7 @@ import { ModelContext } from "./ModelContext"
 import * as THREE from "three"
 import useInterface from "/stores/useInterface"
 import { useBounds } from '@react-three/drei'
+import { invalidate } from "@react-three/fiber"
 
 export default function CameraPositions() {
     let { visibleObj, selectedParts, stepSVG } = useContext(ModelContext)
@@ -26,6 +27,7 @@ export default function CameraPositions() {
 
             freeControls()
             api.refresh(visibleObj).fit()
+            invalidate()
 
         }
 
@@ -33,6 +35,7 @@ export default function CameraPositions() {
             console.log(stepSVG)
             stepSVG.reset()
             freeControls()
+            invalidate()
         }
     })
 

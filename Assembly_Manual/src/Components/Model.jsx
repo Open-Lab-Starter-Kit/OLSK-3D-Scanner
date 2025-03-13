@@ -15,6 +15,7 @@ import * as THREE from 'three';
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { MemoizedModelAux } from "./ModelAux.jsx";
 import useInterface from "/stores/useInterface"
+import { invalidate } from "@react-three/fiber"
 
 
 //Added for EdgesGeometry attempt
@@ -305,6 +306,7 @@ export default function Model({ modelIn, modelOut, modelInCopy, modelInCopy2, mo
         setCurrentObj(model.getObjectByName(stepName[0]))
 
         partsListChange()
+        invalidate()
 
     }, [])
 
@@ -355,7 +357,7 @@ export default function Model({ modelIn, modelOut, modelInCopy, modelInCopy2, mo
             if (selectedParts != []) {
                 highlightParts()
             }
-
+            invalidate()
         }
     }, [selectedParts, currentModel])
 
