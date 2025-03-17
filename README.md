@@ -9,7 +9,7 @@
 Introduction
 --
 
-The OLSK 3D Scanner is an open source 3D scanner with turntable and one moving camera. It features a closed environment for a better caption of the model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. 
+The OLSK 3D Scanner is an open-source 3D scanner with turntable and one moving camera. It features a closed environment for a better caption of the model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. 
 
 <img src="media/OLSK_Vinyl_Cutter_V3_Details.jpg" width="100%">
 
@@ -23,6 +23,17 @@ All OLSK machines are open source and have an assembly manual, the BOM and neces
 
 <br>
 
+Specifications V3
+--
+
+- motion: combination of arc and rotation
+- lights: 2x adjustable LED lights
+- image capturing: adjustable number of pictures per rotation and pictures per arc travel
+- software: app (compatible with any OS)
+- housing: fully enclosed
+- images saved directly on PC
+
+<div align="center"><img src="media/Software.jpg" width="100%"></div>
 
 Files
 --
