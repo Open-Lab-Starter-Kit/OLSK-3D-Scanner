@@ -72,3 +72,16 @@ Hardware design, CAD and PCB files, BOM, settings and other technical or design 
 Assembly manual, pictures, videos, presentations, description text and other type of media are released under the following license:
 
 - Creative-Commons-Attribution-ShareAlike 4.0 International - **[CC BY-SA 4.0](LICENSE_CC_BY_SA_4.0.txt)**
+
+
+Previous version
+--
+
+The previous versions of OLSK machines will always be available. 
+
+**[OLSK 3D Scanner V2 Repository](OLSK_3D_Scanner_V2)** 
+<div><img src="media/OLSK_3DScanner_v2_1_low.png" width="30%"></div>
+
+**[OLSK 3D Scanner V1 Repository](OLSK_3D_Scanner_V1)** 
+<div><img src="media/OLSK-3D-Scanner.jpg" width="30%"></div>
+
