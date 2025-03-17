@@ -17,7 +17,7 @@ The OLSK 3D Scanner is an open source 3D scanner with turntable and one moving c
 The Assembly Manual
 --
 
-All OLSK machines are open source and have an assembly manual, the BOM and necessary files available in this repository for replication. The assembly manual is an interactive 3D guide though each step and contains a list of parts, tools and instruction remarks, which follows a logic order to provide a smooth assembly.
+All OLSK machines are open source and have an assembly manual, the BOM and necessary files available in this repository for replication. The assembly manual is an interactive 3D guide though each step and contains a list of parts, tools and instruction remarks, which follows a logical order to provide a smooth assembly.
 
 - **[Assembly Manual](https://open-lab-starter-kit.github.io/OLSK-3D-Scanner/)**
 
@@ -28,8 +28,7 @@ Files
 --
 
 - **[CAD](cad)**
-- **[Software](Software)**
-- **[PCB](PCB)**
+- **[Firmware](firmware)**
 - **[Wiring Schematic](OLSK_3D_Scanner_V3_WiringSchematic.pdf)**
 
 Author
