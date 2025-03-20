@@ -41,7 +41,7 @@ Files
 - **[CAD](cad)**
 - **[Firmware](firmware)**
 - **[Wiring Schematic](OLSK_3D_Scanner_V3_WiringSchematic.pdf)**
-- **[BOM](OLSK 3D Scanner V3 - BOM.xlsx)**
+- **[BOM](OLSK_3D_Scanner_V3-BOM.xlsx)**
 
 Author
 --
