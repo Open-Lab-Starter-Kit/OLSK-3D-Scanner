@@ -56,8 +56,8 @@ Machine design:
 - **[Alberto Porri](http://fabacademy.org/2021/labs/santachiara/students/alberto-porri/)**
 
 Software design:
-- **[Marcello Tania](https://marcellotania.com/)**
 - **[Sulaiman Tanbari](https://www.linkedin.com/in/mohammad-sulaiman-tanbari/)**
+- - **[Daniele Ingrassia](https://www.linkedin.com/in/danieleingrassia/)**
 
 The machine is part of the **[Open Lab Starter Kit (OLSK)](https://www.inmachines.net/open-lab-starter-kit)** group of open source digital fabrication machines.
 
