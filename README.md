@@ -41,6 +41,7 @@ Files
 - **[CAD](cad)**
 - **[Firmware](firmware)**
 - **[Wiring Schematic](OLSK_3D_Scanner_V3_WiringSchematic.pdf)**
+- **[BOM](OLSK 3D Scanner V3 - BOM.xlsx)**
 
 Author
 --
@@ -57,7 +58,7 @@ Machine design:
 
 Software design:
 - **[Sulaiman Tanbari](https://www.linkedin.com/in/mohammad-sulaiman-tanbari/)**
-- - **[Daniele Ingrassia](https://www.linkedin.com/in/danieleingrassia/)**
+- **[Daniele Ingrassia](https://www.linkedin.com/in/danieleingrassia/)**
 
 The machine is part of the **[Open Lab Starter Kit (OLSK)](https://www.inmachines.net/open-lab-starter-kit)** group of open source digital fabrication machines.
 
