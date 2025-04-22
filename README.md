@@ -9,7 +9,7 @@
 Introduction
 --
 
-The OLSK 3D Scanner is an open-source 3D scanner with turntable and one moving camera. It features a closed environment for a better caption of the model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home. 
+The OLSK 3D Scanner is an open-source 3D scanner with turntable and one moving camera. It features a closed environment for a better caption of the model. With a very simple and compact design, this machine can be easily replicable and assembled in Fab Labs, schools or at home.
 
 <img src="media/OLSK_Vinyl_Cutter_V3_Details.jpg" width="100%">
 
@@ -77,6 +77,9 @@ Contact
 License
 --
 
+See the LICENSES folder and the SPDX metadata for more details on other files.
+The project is [REUSE](https://reuse.software/) compliant
+
 Hardware design, CAD and PCB files, BOM, settings and other technical or design files are released under the following license:
 
 - CERN Open Hardware Licence Version 2 Weakly Reciprocal - **[CERN-OHL-W](LICENSE_CERN_OHL_W_V2.txt)**
@@ -85,15 +88,20 @@ Assembly manual, pictures, videos, presentations, description text and other typ
 
 - Creative-Commons-Attribution-ShareAlike 4.0 International - **[CC BY-SA 4.0](LICENSE_CC_BY_SA_4.0.txt)**
 
+Copyright
+--
+
+- Daniele Ingrassia, InMachines Ingrassia GmbH
+
+- Tobias Redlich, Helmut-Schmidt-Universität/Universität der Bundeswehr Hamburg
 
 Previous version
 --
 
-The previous versions of OLSK machines will always be available. 
+The previous versions of OLSK machines will always be available.
 
-**[OLSK 3D Scanner V2 Repository](OLSK_3D_Scanner_V2)** 
+**[OLSK 3D Scanner V2 Repository](OLSK_3D_Scanner_V2)**
 <div><img src="media/OLSK_3DScanner_v2_1_low.png" width="30%"></div>
 
-**[OLSK 3D Scanner V1 Repository](OLSK_3D_Scanner_V1)** 
+**[OLSK 3D Scanner V1 Repository](OLSK_3D_Scanner_V1)**
 <div><img src="media/OLSK-3D-Scanner.jpg" width="30%"></div>
-
