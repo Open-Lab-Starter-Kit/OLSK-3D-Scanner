@@ -1,4 +1,4 @@
-OLSK Scanner application source code
+# OLSK Scanner application source code
 
 ## Install the dependencies and libraries
 
